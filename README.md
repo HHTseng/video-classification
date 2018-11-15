@@ -43,7 +43,7 @@ The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
    
 - For CRNN, the videos are resized as **(t-dim, channels, x-dim, y-dim) = (28, 3, 224, 224)** since the ResNet-152 only receives RGB inputs of size (224, 224).
 
-- Training videos = 9,990 vs. testing videos = 3,330
+- Training videos = **9,990** vs. testing videos = **3,330**
 
 - In the test phase, the models are almost the same as the training phase, except that dropout has to be removed and batchnorm layer uses moving average and variance instead of mini-batch values. These are taken care by using "**model.eval()**".
 
@@ -65,7 +65,7 @@ For tutorial purpose, I try to build code as simple as possible. Essentially, **
 
 
 ### 1. Download preprocessed UCF101 dataset
-For convenience, we use preprocessed UCF101 dataset already sliced into RGB images (frames) from [feichtenhofer/twostreamfusion](https://github.com/feichtenhofer/twostreamfusion):
+For convenience, we use preprocessed UCF101 dataset already sliced into RGB images [feichtenhofer/twostreamfusion](https://github.com/feichtenhofer/twostreamfusion):
 
 
 - **UCF101 RGB:** [**part1**](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.001),
