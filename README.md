@@ -8,12 +8,9 @@ The repository builds a quick and simple code for video classification (or actio
 ![alt text](./fig/kayaking.gif)
 
 
-[UCF101](http://crcv.ucf.edu/data/UCF101.php) has total 13,320 videos from 101 actions. Videos have various lengths in time (frames) and different sizes in 2d height and width; the shortest is of 28 frames.
+[UCF101](http://crcv.ucf.edu/data/UCF101.php) has total 13,320 videos from 101 actions. Videos have various time lengths (frames) and different 2d image size; the shortest is 28 frames.
 
-To avoid painful video preprocessing like frame extraction and conversion using [OpenCV](https://opencv.org/) or [FFmpeg](https://www.ffmpeg.org/), here I used a preprocessed dataset from [feichtenhofer](https://github.com/feichtenhofer/twostreamfusion) directly.
-
-
-If you want to convert or extract video frames from scratch, here are some nice tutorials: 
+To avoid painful video preprocessing like frame extraction and conversion using [OpenCV](https://opencv.org/) or [FFmpeg](https://www.ffmpeg.org/), here I used a preprocessed dataset from [feichtenhofer](https://github.com/feichtenhofer/twostreamfusion) directly. If you want to convert or extract video frames from scratch, here are some nice tutorials: 
   - https://pythonprogramming.net/loading-video-python-opencv-tutorial/
   - https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/ 
 
@@ -53,7 +50,7 @@ The CRNN model is a pair of CNN encoder and RNN decoder:
 For tutorial purpose, I try to build code as simple as possible. Essentially, **only 3 files are needed to for each model**. *eg.,* for 3D-CNN
   - `UCF101_3DCNN.py`: contains model parameters, training/testing process.
   - `function.py`: contains main 3DCNN & CRNN models, data loaders, and some useful functions.
-  - `UCF101actions.pkl`: contains 101 action names (labels), e.g, *'BenchPress', 'SkyDiving' , 'Bowling', 'PlayingViolin', 'HorseRace', ... etc.*
+  - `UCF101actions.pkl`: contains 101 action names (labels), e.g, *'BenchPress', 'SkyDiving' , 'Bowling', etc.*
 
 ### 0. Prerequisites
 - [Python 3.6](https://www.python.org/)
@@ -68,9 +65,11 @@ For tutorial purpose, I try to build code as simple as possible. Essentially, **
 ### 1. Download preprocessed UCF101 dataset
 For convenience, we use preprocessed UCF101 dataset already sliced into RGB images (frames) from [feichtenhofer/twostreamfusion](https://github.com/feichtenhofer/twostreamfusion):
 
-`**UCF101 RGB** [part1](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.001),
+
+- UCF101 RGB: [part1](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.001),
 [part2](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.002),
-[part3](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.003)`
+[part3](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.003) 
+
 
 Put the 3 parts in same folder to unzip. The default folder name is **jpegs_256**.
 
