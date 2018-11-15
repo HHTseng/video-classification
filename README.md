@@ -27,7 +27,7 @@ Use several 3D kernels of size *(a,b,c)* and channels *n*,  *e.g., (a, b, c, n) 
 
 The CRNN model is a pair of CNN encoder and RNN decoder:
 
-  - **[encoder]** A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="120">
+  - **[encoder]** A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="130">
 
   - **[decoder]** A recurrent neural network (RNN) receives the sequence of temporal 1D vectors **{z(t) | all t}** from (a) and outputs **{h(t) | all t}**. A final fully-connected neural net is concatenated at the end to yield categorical predictions, where the CNN encoder can be:
     1. trained from scratch
@@ -37,7 +37,7 @@ The CRNN model is a pair of CNN encoder and RNN decoder:
 
 
 
-## Training & test
+## Training & testing
 - For 3D CNN:
    1. The videos are resized as (t-dim, channels, x-dim, y-dim) = (28, 3, 256, 342) since CNN requires a fixed-size input. The minimal frame number 28 (t-dim) is the consensus of all videos in UCF101.
    2. *Batch normalization*, *dropout* are used.
@@ -50,7 +50,7 @@ The CRNN model is a pair of CNN encoder and RNN decoder:
 
 
 ## Usage 
-For tutorial purpose, I try to build code as simple as possible. Essentially, only 3 files are needed to run complete UCF101 video classification: 
+For tutorial purpose, I try to build code as simple as possible. Essentially, **only 3 files are needed to for each model**. *eg.,* for 3D-CNN
   - `UCF101_3DCNN.py`: contains model parameters, training/testing process.
   - `function.py`: contains main 3DCNN & CRNN models, data loaders, and some useful functions.
   - `UCF101actions.pkl`: contains 101 action names (labels), e.g, *'BenchPress', 'SkyDiving' , 'Bowling', 'PlayingViolin', 'HorseRace', ... etc.*
@@ -66,11 +66,11 @@ For tutorial purpose, I try to build code as simple as possible. Essentially, on
 
 
 ### 1. Download preprocessed UCF101 dataset
-For convenience, we use preprocessed UCF101 dataset already sliced into RGB images (frames) by [feichtenhofer/twostreamfusion](https://github.com/feichtenhofer/twostreamfusion)):
+For convenience, we use preprocessed UCF101 dataset already sliced into RGB images (frames) from [feichtenhofer/twostreamfusion](https://github.com/feichtenhofer/twostreamfusion):
 
-- **UCF101 RGB** [part1](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.001),
+`**UCF101 RGB** [part1](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.001),
 [part2](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.002),
-[part3](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.003).
+[part3](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.003)`
 
 Put the 3 parts in same folder to unzip. The default folder name is **jpegs_256**.
 
