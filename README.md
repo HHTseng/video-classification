@@ -27,7 +27,7 @@ Use several 3D kernels of size *(a,b,c)* and channels *n*,  *e.g., (a, b, c, n) 
 
 The CRNN model is a pair of CNN encoder and RNN decoder:
 
-(a) [encoder]. A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** <img src="./fig/f_CNN.png" width="50">
+(a) [encoder]. A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** <img src="./fig/f_CNN.png" width="200">
 
 (b) [decoder]. A recurrent neural network (RNN) receives the sequence of temporal 1D vectors **{z(t) | all t}** from (a) and outputs **{h(t) | all t}**. A final fully-connected neural net is concatenated at the end to yield categorical predictions.
 
@@ -35,7 +35,7 @@ where the CNN encoder can be:
   - trained from scratch
   - a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/). The decoder RNN uses a long short-term memory (LSTM) network.
 
-<img src="./fig/CRNN.png" width="500">
+<img src="./fig/CRNN.png" width="800">
 
 #### Training specifics
 - For 3D CNN:
@@ -122,7 +122,7 @@ By default, the model outputs:
   - Using [Jupyter Notebook](http://jupyter.org/) to run `check_video_predictions.ipynb`, you can see where the model gets wrong:
 
 
-<img src="./fig/wrong_pred.png" width="500">
+<img src="./fig/wrong_pred.png" width="800">
 
 
 
@@ -139,8 +139,8 @@ A field test using 2 GPUs (nVidia TITAN V, 12Gb mem), with my default model para
 2D CNN + LSTM   |  ?  |     ? % | 
 2D CNN (ResNet152) + LSTM|  40  |81.05% |      
 
-<img src="./fig/loss_3DCNN.png" width="600">
-<img src="./fig/loss_CRNN.png" width="600">
+<img src="./fig/loss_3DCNN.png" width="800">
+<img src="./fig/loss_CRNN.png" width="800">
 
 
 
