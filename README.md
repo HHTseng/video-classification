@@ -118,9 +118,9 @@ To check model prediction:
 
 ## Device & performance 
 
-The models will detect and use multiple GPUs by implementing [torch.nn.DataParallel](https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html).
+- The models detect and use multiple GPUs by itself, where we implemented [torch.nn.DataParallel](https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html).
 
-A field test using 2 GPUs (nVidia TITAN V, 12Gb mem) with my default model parameters and batch size `30~60`.
+- A field test using 2 GPUs (nVidia TITAN V, 12Gb mem) with my default model parameters and batch size `30~60`.
 
 
  network        | best epoch | testing accuracy |
