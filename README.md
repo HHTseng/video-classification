@@ -27,13 +27,11 @@ Use several 3D kernels of size *(a,b,c)* and channels *n*,  *e.g., (a, b, c, n) 
 
 The CRNN model is a pair of CNN encoder and RNN decoder:
 
-(a) [encoder]. A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** <img src="./fig/f_CNN.png" width="200">
+  - **[encoder]** A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="150">
 
-(b) [decoder]. A recurrent neural network (RNN) receives the sequence of temporal 1D vectors **{z(t) | all t}** from (a) and outputs **{h(t) | all t}**. A final fully-connected neural net is concatenated at the end to yield categorical predictions.
-
-where the CNN encoder can be:
-  - trained from scratch
-  - a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/). The decoder RNN uses a long short-term memory (LSTM) network.
+  - **[decoder]** A recurrent neural network (RNN) receives the sequence of temporal 1D vectors **{z(t) | all t}** from (a) and outputs **{h(t) | all t}**. A final fully-connected neural net is concatenated at the end to yield categorical predictions, where the CNN encoder can be:
+    1. trained from scratch
+    2. a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/). The decoder RNN uses a long short-term memory (LSTM) network.
 
 <img src="./fig/CRNN.png" width="750">
 
