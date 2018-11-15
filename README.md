@@ -38,10 +38,10 @@ The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
 
 ## Training & testing
 - For 3D CNN:
-   1. The videos are resized as (t-dim, channels, x-dim, y-dim) = (28, 3, 256, 342) since CNN requires a fixed-size input. The minimal frame number 28 (t-dim) is the consensus of all videos in UCF101.
+   1. The videos are resized as **(t-dim, channels, x-dim, y-dim) = (28, 3, 256, 342)** since CNN requires a fixed-size input since he minimal frame number 28 is the consensus of all videos in UCF101.
    2. *Batch normalization*, *dropout* are used.
    
-- For CRNN, the videos are resized as (t-dim, channels, x-dim, y-dim) = (28, 3, 224, 224) since the ResNet-152 only receives RGB inputs of size (224, 224).
+- For CRNN, the videos are resized as **(t-dim, channels, x-dim, y-dim) = (28, 3, 224, 224)** since the ResNet-152 only receives RGB inputs of size (224, 224).
 
 - Training videos = 9,990 vs. testing videos = 3,330
 
