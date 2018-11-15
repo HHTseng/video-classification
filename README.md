@@ -127,7 +127,7 @@ To check model prediction:
 ------------    |:-----:| :-----:|
 3D CNN          |  4   | 50.84 % | 
 2D CNN + LSTM   |  ?  |     ? % | 
-2D ResNet152-CNN + LSTM|  40  |81.05 % |      
+2D ResNet152-CNN + LSTM|  40  |**81.05 %** |      
 
 <img src="./fig/loss_3DCNN.png" width="650">
 <img src="./fig/loss_CRNN.png" width="650">
