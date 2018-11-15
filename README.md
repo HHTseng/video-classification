@@ -10,27 +10,27 @@ The repository builds a quick and simple code for video classification (or actio
 
 [UCF101](http://crcv.ucf.edu/data/UCF101.php) has total 13,320 videos from 101 actions. Videos have various time lengths (frames) and different 2d image size; the shortest is 28 frames.
 
-To avoid painful video preprocessing like frame extraction and conversion using [OpenCV](https://opencv.org/) or [FFmpeg](https://www.ffmpeg.org/), here I used a preprocessed dataset from [feichtenhofer](https://github.com/feichtenhofer/twostreamfusion) directly. If you want to convert or extract video frames from scratch, here are some nice tutorials: 
+To avoid painful video preprocessing like frame extraction and conversion such as [OpenCV](https://opencv.org/) or [FFmpeg](https://www.ffmpeg.org/), here I used a preprocessed dataset from [feichtenhofer](https://github.com/feichtenhofer/twostreamfusion) directly. If you want to convert or extract video frames from scratch, here are some nice tutorials: 
   - https://pythonprogramming.net/loading-video-python-opencv-tutorial/
   - https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/ 
 
 ## Models 
 
 ### 1. 3D CNN (train from scratch)
-Use several 3D kernels of size *(a,b,c)* and channels *n*,  *e.g., (a, b, c, n) = (3, 3, 3, 16)*, to convolve with video input, where videos are viewed as 3D images. *Batch normalization*, *dropout* are also used.
+Use several 3D kernels of size *(a,b,c)* and channels *n*,  *e.g., (a, b, c, n) = (3, 3, 3, 16)* to convolve with video input, where videos are viewed as 3D images. *Batch normalization* and *dropout* are also used.
 
 
 ### 2. **CNN + RNN** (CRNN)
 
-The CRNN model is a pair of CNN encoder and RNN decoder:
+The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
 
   - **[encoder]** A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="130">
 
-  - **[decoder]** A recurrent neural network (RNN) receives the sequence of temporal 1D vectors **{z(t) | all t}** from (a) and outputs **{h(t) | all t}**. A final fully-connected neural net is concatenated at the end to yield categorical predictions, where the CNN encoder can be:
+  - **[decoder]** A recurrent neural network (RNN) receives a sequence input vectors **z(t)** from the CNN encoder and outputs another 1D sequence **h(t)**. A final fully-connected neural net is concatenated at the end for categorical predictions. Here the CNN encoder can be:
     1. trained from scratch
     2. a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/). The decoder RNN uses a long short-term memory (LSTM) network.
 
-<img src="./fig/CRNN.png" width="750">
+<img src="./fig/CRNN.png" width="700">
 
 
 
