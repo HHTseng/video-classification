@@ -112,7 +112,7 @@ To check model prediction:
   - Run ``check_model_prediction.py`` to load best training model and generate all 13,320 video prediction list in [Pandas](https://pandas.pydata.org/) dataframe. File output: `UCF101_Conv3D_videos_prediction.pkl`.
   - Run `check_video_predictions.ipynb` with [Jupyter Notebook](http://jupyter.org/) and you can see where the model gets wrong:
 
-<img src="./fig/wrong_pred.png" width="650">
+<img src="./fig/wrong_pred.png" width="600">
 
 
 
