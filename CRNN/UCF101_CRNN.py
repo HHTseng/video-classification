@@ -191,30 +191,11 @@ cnn_encoder = EncoderCNN(img_x=img_x, img_y=img_y, fc_hidden1=CNN_fc_hidden1, fc
 rnn_decoder = DecoderRNN(CNN_embed_dim=CNN_embed_dim, h_RNN_layers=RNN_hidden_layers, h_RNN=RNN_hidden_nodes, 
                          h_FC_dim=RNN_FC_dim, drop_p=dropout_p, num_classes=k).to(device)
 
-
 # Parallelize model to multiple GPUs
 if torch.cuda.device_count() > 1:
     print("Using", torch.cuda.device_count(), "GPUs!")
     cnn_encoder = nn.DataParallel(cnn_encoder)
     rnn_decoder = nn.DataParallel(rnn_decoder)
-
-# # Parallelize model to multiple GPUs
-# if torch.cuda.device_count() > 1:
-#     print("Using", torch.cuda.device_count(), "GPUs!")
-#     cnn_encoder = nn.DataParallel(cnn_encoder)
-#     rnn_decoder = nn.DataParallel(rnn_decoder)
-
-#     # Combine all EncoderCNN + DecoderRNN parameters
-#     crnn_params = list(cnn_encoder.module.fc1.parameters()) + list(cnn_encoder.module.bn1.parameters()) + \
-#                   list(cnn_encoder.module.fc2.parameters()) + list(cnn_encoder.module.bn2.parameters()) + \
-#                   list(cnn_encoder.module.fc3.parameters()) + list(rnn_decoder.parameters())
-
-# elif torch.cuda.device_count() == 1:
-#     print("Using", torch.cuda.device_count(), "GPU!")
-#     # Combine all EncoderCNN + DecoderRNN parameters
-#     crnn_params = list(cnn_encoder.fc1.parameters()) + list(cnn_encoder.bn1.parameters()) + \
-#                   list(cnn_encoder.fc2.parameters()) + list(cnn_encoder.bn2.parameters()) + \
-#                   list(cnn_encoder.fc3.parameters()) + list(rnn_decoder.parameters())
 
 crnn_params = list(cnn_encoder.parameters()) + list(rnn_decoder.parameters())
 optimizer = torch.optim.Adam(crnn_params, lr=learning_rate)
