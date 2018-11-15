@@ -116,7 +116,7 @@ To check model prediction:
 
 
 
-## Device & Performance 
+## Device & performance 
 
 The models will detect and use multiple GPUs by implementing [torch.nn.DataParallel](https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html).
 
@@ -129,8 +129,8 @@ A field test using 2 GPUs (nVidia TITAN V, 12Gb mem) with my default model param
 2D CNN + LSTM   |  ?  |     ? % | 
 2D CNN (ResNet152) + LSTM|  40  |81.05% |      
 
-<img src="./fig/loss_3DCNN.png" width="700">
-<img src="./fig/loss_CRNN.png" width="700">
+<img src="./fig/loss_3DCNN.png" width="600">
+<img src="./fig/loss_CRNN.png" width="600">
 
 
 
