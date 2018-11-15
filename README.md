@@ -35,7 +35,7 @@ where the CNN encoder can be:
   - trained from scratch
   - a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/). The decoder RNN uses a long short-term memory (LSTM) network.
 
-<img src="./fig/CRNN.png" width="800">
+<img src="./fig/CRNN.png" width="750">
 
 #### Training specifics
 - For 3D CNN:
@@ -122,7 +122,7 @@ By default, the model outputs:
   - Using [Jupyter Notebook](http://jupyter.org/) to run `check_video_predictions.ipynb`, you can see where the model gets wrong:
 
 
-<img src="./fig/wrong_pred.png" width="800">
+<img src="./fig/wrong_pred.png" width="700">
 
 
 
@@ -139,8 +139,8 @@ A field test using 2 GPUs (nVidia TITAN V, 12Gb mem), with my default model para
 2D CNN + LSTM   |  ?  |     ? % | 
 2D CNN (ResNet152) + LSTM|  40  |81.05% |      
 
-<img src="./fig/loss_3DCNN.png" width="800">
-<img src="./fig/loss_CRNN.png" width="800">
+<img src="./fig/loss_3DCNN.png" width="750">
+<img src="./fig/loss_CRNN.png" width="750">
 
 
 
