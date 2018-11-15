@@ -49,10 +49,10 @@ The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
 
 
 ## Usage 
-For tutorial purpose, I try to build code as simple as possible. Essentially, **only 3 files are needed to for each model**. *eg.,* for 3D-CNN
-  - `UCF101_3DCNN.py`: contains model parameters, training/testing process.
-  - `function.py`: contains main 3DCNN & CRNN models, data loaders, and some useful functions.
-  - `UCF101actions.pkl`: contains 101 action names (labels), e.g, *'BenchPress', 'SkyDiving' , 'Bowling', etc.*
+For tutorial purpose, I try to build code as simple as possible. Essentially, **only 3 files are needed to for each model**. *eg.,* for 3D-CNN model
+  - `UCF101_3DCNN.py`: model parameters, training/testing process.
+  - `function.py`: modules of 3DCNN & CRNN, data loaders, and some useful functions.
+  - `UCF101actions.pkl`: 101 action names (labels), e.g, *'BenchPress', 'SkyDiving' , 'Bowling', etc.*
 
 ### 0. Prerequisites
 - [Python 3.6](https://www.python.org/)
@@ -94,14 +94,9 @@ data_path = "./UCF101/jpegs_256/"
 
 ### 3. Train & test model
 
-- For 3D CNN model, run
+- For **3D CNN/ CRNN/ ResNetCRNN** model, run
 ```bash
-$ python UCF101_3DCNN.py    
-```
-
-- For CRNN model, run
-```bash
-$ python UCF101_CRNN.py    
+$ python UCF101_3DCNN/CRNN/ResNetCRNN.py    
 ```
 
 
