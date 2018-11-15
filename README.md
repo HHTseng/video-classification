@@ -24,13 +24,13 @@ Use several 3D kernels of size *(a,b,c)* and channels *n*,  *e.g., (a, b, c, n) 
 
 The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
 
-  - **[encoder]** A convolutional neural network (CNN) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="130">
+  - **[encoder]** A [CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="130">
 
-  - **[decoder]** A recurrent neural network (RNN) receives a sequence input vectors **z(t)** from the CNN encoder and outputs another 1D sequence **h(t)**. A final fully-connected neural net is concatenated at the end for categorical predictions. Here the CNN encoder can be:
+  - **[decoder]** A [RNN](https://en.wikipedia.org/wiki/Recurrent_neural_network) receives a sequence input vectors **z(t)** from the CNN encoder and outputs another 1D sequence **h(t)**. A final fully-connected neural net is concatenated at the end for categorical predictions. Here the CNN encoder can be:
     1. trained from scratch
     2. a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/). The decoder RNN uses a long short-term memory (LSTM) network.
 
-<img src="./fig/CRNN.png" width="700">
+<img src="./fig/CRNN.png" width="600">
 
 
 
