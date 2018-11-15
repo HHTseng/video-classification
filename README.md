@@ -94,7 +94,7 @@ data_path = "./UCF101/jpegs_256/"
 
 ### 3. Train & test model
 
-- For **3D CNN/ CRNN/ ResNetCRNN** model, run
+- For **3D CNN/ CRNN/ ResNetCRNN** model, in each folder run
 ```bash
 $ python UCF101_3DCNN/CRNN/ResNetCRNN.py    
 ```
@@ -104,15 +104,15 @@ $ python UCF101_3DCNN/CRNN/ResNetCRNN.py
 
 By default, the model outputs:
 
-- training & testing loss / accuracy: `epoch_train_loss/score.npy`, `epoch_test_loss/score.npy`
+- Training & testing loss/ accuracy: `epoch_train_loss/score.npy`, `epoch_test_loss/score.npy`
 
 - Model parameters & optimizer: eg. `CRNN_epoch8.pth`, `CRNN_optimizer_epoch8.pth`. They can be used for retraining or pretrained purpose.
 
-- Check model prediction:
-  - Using ``check_model_prediction.py`` to load best training model and generate all 13,320 video prediction list in [Pandas](https://pandas.pydata.org/) dataframe, *e.g.* `UCF101_Conv3D_videos_prediction.pkl`.
-  - Using [Jupyter Notebook](http://jupyter.org/) to run `check_video_predictions.ipynb`, you can see where the model gets wrong:
+To check model prediction:
+  - Run ``check_model_prediction.py`` to load best training model and generate all 13,320 video prediction list in [Pandas](https://pandas.pydata.org/) dataframe, *e.g.* `UCF101_Conv3D_videos_prediction.pkl`.
+  - Run `check_video_predictions.ipynb` with [Jupyter Notebook](http://jupyter.org/) and you can see where the model gets wrong:
 
-<img src="./fig/wrong_pred.png" width="700">
+<img src="./fig/wrong_pred.png" width="650">
 
 
 
