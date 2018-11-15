@@ -24,13 +24,15 @@ Use several 3D kernels of size *(a,b,c)* and channels *n*,  *e.g., (a, b, c, n) 
 
 The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
 
-  - **[encoder]** A [CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="130">
+  - **[encoder]** A [CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network) function encodes (meaning compressing dimension) every 2D image **x(t)** into a 1D vector **z(t)** by <img src="./fig/f_CNN.png" width="140">
 
-  - **[decoder]** A [RNN](https://en.wikipedia.org/wiki/Recurrent_neural_network) receives a sequence input vectors **z(t)** from the CNN encoder and outputs another 1D sequence **h(t)**. A final fully-connected neural net is concatenated at the end for categorical predictions. Here the CNN encoder can be:
+  - **[decoder]** A [RNN](https://en.wikipedia.org/wiki/Recurrent_neural_network) receives a sequence input vectors **z(t)** from the CNN encoder and outputs another 1D sequence **h(t)**. Here the decoder RNN uses a long short-term memory [(LSTM)](https://en.wikipedia.org/wiki/Long_short-term_memory) network.
+  
+  A final fully-connected neural net is concatenated at the end for categorical predictions. Here the CNN encoder can be:
     1. trained from scratch
-    2. a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/). The decoder RNN uses a long short-term memory (LSTM) network.
+    2. a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/).
 
-<img src="./fig/CRNN.png" width="600">
+<img src="./fig/CRNN.png" width="700">
 
 
 
@@ -66,9 +68,9 @@ For tutorial purpose, I try to build code as simple as possible. Essentially, **
 For convenience, we use preprocessed UCF101 dataset already sliced into RGB images (frames) from [feichtenhofer/twostreamfusion](https://github.com/feichtenhofer/twostreamfusion):
 
 
-- UCF101 RGB: [part1](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.001),
-[part2](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.002),
-[part3](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.003) 
+- **UCF101 RGB:** [**part1**](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.001),
+[**part2**](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.002),
+[**part3**](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.003) 
 
 
 Put the 3 parts in same folder to unzip. The default folder name is **jpegs_256**.
