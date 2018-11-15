@@ -20,7 +20,6 @@ data_path = "./jpegs_256/"    # define UCF-101 RGB data path
 action_name_path = './UCF101actions.pkl'
 save_model_path = "./CRNN_ckpt/"
 
-
 # EncoderCNN architecture
 CNN_fc_hidden1, CNN_fc_hidden2 = 1024, 768
 CNN_embed_dim = 512      # latent dim extracted by 2D CNN
@@ -130,7 +129,6 @@ device = torch.device("cuda" if use_cuda else "cpu")   # use CPU or GPU
 # Data loading parameters
 params = {'batch_size': batch_size, 'shuffle': True, 'num_workers': 4, 'pin_memory': True} if use_cuda else {}
 
-
 # load UCF101 actions names
 with open(action_name_path, 'rb') as f:
     action_names = pickle.load(f)
@@ -184,7 +182,6 @@ train_loader = data.DataLoader(train_set, **params)
 valid_loader = data.DataLoader(valid_set, **params)
 
 # Create model
-# cnn_encoder = ResCNNEncoder(fc_hidden1=CNN_fc_hidden1, fc_hidden2=CNN_fc_hidden2, drop_p=dropout_p, CNN_embed_dim=CNN_embed_dim).to(device)
 cnn_encoder = EncoderCNN(img_x=img_x, img_y=img_y, fc_hidden1=CNN_fc_hidden1, fc_hidden2=CNN_fc_hidden2,
                          drop_p=dropout_p, CNN_embed_dim=CNN_embed_dim).to(device)
 
