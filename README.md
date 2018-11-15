@@ -32,7 +32,7 @@ The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
     1. trained from scratch
     2. a pretrained model [ResNet-152](https://arxiv.org/abs/1512.03385) using image dataset [ILSVRC-2012-CLS](http://www.image-net.org/challenges/LSVRC/2012/).
 
-<img src="./fig/CRNN.png" width="700">
+<img src="./fig/CRNN.png" width="650">
 
 
 
