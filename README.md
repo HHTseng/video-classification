@@ -109,7 +109,7 @@ By default, the model outputs:
 - Model parameters & optimizer: eg. `CRNN_epoch8.pth`, `CRNN_optimizer_epoch8.pth`. They can be used for retraining or pretrained purpose.
 
 To check model prediction:
-  - Run ``check_model_prediction.py`` to load best training model and generate all 13,320 video prediction list in [Pandas](https://pandas.pydata.org/) dataframe, *e.g.* `UCF101_Conv3D_videos_prediction.pkl`.
+  - Run ``check_model_prediction.py`` to load best training model and generate all 13,320 video prediction list in [Pandas](https://pandas.pydata.org/) dataframe. File output: `UCF101_Conv3D_videos_prediction.pkl`.
   - Run `check_video_predictions.ipynb` with [Jupyter Notebook](http://jupyter.org/) and you can see where the model gets wrong:
 
 <img src="./fig/wrong_pred.png" width="650">
@@ -120,7 +120,7 @@ To check model prediction:
 
 The models will detect and use multiple GPUs by implementing [torch.nn.DataParallel](https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html).
 
-A field test using 2 GPUs (nVidia TITAN V, 12Gb mem), with my default model parameters and batch size `30~60`.
+A field test using 2 GPUs (nVidia TITAN V, 12Gb mem) with my default model parameters and batch size `30~60`.
 
 
  network        | best epoch | testing accuracy |
