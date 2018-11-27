@@ -8,9 +8,7 @@ The repository builds a **quick and simple** code for video classification (or a
 ![alt text](./fig/kayaking.gif)
 
 
-[UCF101](http://crcv.ucf.edu/data/UCF101.php) has total 13,320 videos from 101 actions. Videos have various time lengths (frames) and different 2d image size; the shortest is 28 frames.
-
-To avoid painful video preprocessing like frame extraction and conversion such as [OpenCV](https://opencv.org/) or [FFmpeg](https://www.ffmpeg.org/), here I used a preprocessed dataset from [feichtenhofer](https://github.com/feichtenhofer/twostreamfusion) directly. If you want to convert or extract video frames from scratch, here are some nice tutorials: 
+[UCF101](http://crcv.ucf.edu/data/UCF101.php) has total 13,320 videos from 101 actions. Videos have various time lengths (frames) and different 2d image size; the shortest is 28 frames. To avoid painful video preprocessing like frame extraction and conversion such as [OpenCV](https://opencv.org/) or [FFmpeg](https://www.ffmpeg.org/), here I used a preprocessed dataset from [feichtenhofer](https://github.com/feichtenhofer/twostreamfusion) directly. If you want to convert or extract video frames from scratch, here are some nice tutorials: 
   - https://pythonprogramming.net/loading-video-python-opencv-tutorial/
   - https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/ 
 
@@ -123,14 +121,15 @@ To check model prediction:
 - A field test using 2 GPUs (nVidia TITAN V, 12Gb mem) with my default model parameters and batch size `30~60`.
 
 
- network        | best epoch | testing accuracy |
-------------    |:-----:| :-----:|
-3D CNN          |  4   | 50.84 % | 
-2D CNN + LSTM   |  ?  |     ? % | 
-2D ResNet152-CNN + LSTM|  40  |**81.05 %** |      
+ network                | best epoch | testing accuracy |
+------------            |:-----:| :-----:|
+3D CNN                  |   4  |  50.84 % | 
+2D CNN + LSTM           |  25  |  54.62 % | 
+2D ResNet152-CNN + LSTM |  40  |**81.05 %** |      
 
 <img src="./fig/loss_3DCNN.png" width="650">
 <img src="./fig/loss_CRNN.png" width="650">
+<img src="./fig/loss_ResNetCRNN.png" width="650">
 
 
 

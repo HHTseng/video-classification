@@ -232,7 +232,7 @@ class EncoderCNN(nn.Module):
         self.CNN_embed_dim = CNN_embed_dim
 
         # CNN architechtures
-        self.ch1, self.ch2, self.ch3, self.ch4 = 32, 64, 128, 256
+        self.ch1, self.ch2, self.ch3, self.ch4 = 16, 32, 64, 128
         self.k1, self.k2, self.k3, self.k4 = (5, 5), (3, 3), (3, 3), (3, 3)      # 2d kernal size
         self.s1, self.s2, self.s3, self.s4 = (2, 2), (2, 2), (2, 2), (2, 2)      # 2d strides
         self.pd1, self.pd2, self.pd3, self.pd4 = (0, 0), (0, 0), (0, 0), (0, 0)  # 2d padding
