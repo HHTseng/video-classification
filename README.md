@@ -73,7 +73,7 @@ For convenience, we use preprocessed UCF101 dataset already sliced into RGB imag
 [**part3**](http://ftp.tugraz.at/pub/feichtenhofer/tsfusion/data/ucf101_jpegs_256.zip.003) 
 
 
-Put the 3 parts in same folder to unzip. The default folder name is **jpegs_256**.
+Put the 3 parts in same folder to unzip. The folder has default name: **jpegs_256**.
 
 
 
@@ -127,7 +127,7 @@ To check model prediction:
 ------------            |:-----:| :-----:|
 3D CNN                  |   4  |  50.84 % | 
 2D CNN + LSTM           |  25  |  54.62 % | 
-2D ResNet152-CNN + LSTM |  40  |**81.05 %** |      
+2D ResNet152-CNN + LSTM |  41  |**85.05 %** |      
 
 <img src="./fig/loss_3DCNN.png" width="650">
 <img src="./fig/loss_CRNN.png" width="650">

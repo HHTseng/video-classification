@@ -36,7 +36,7 @@ RNN_FC_dim = 256
 k = 101             # number of target category
 epochs = 120        # training epochs
 batch_size = 40  
-learning_rate = 1e-4
+learning_rate = 1e-3
 log_interval = 10   # interval for displaying training info
 
 # Select which frame to begin & end in videos
