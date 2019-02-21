@@ -60,8 +60,8 @@ class Dataset_3DCNN(data.Dataset):
         folder = self.folders[index]
 
         # Load data
-        X = self.read_images(data_path, folder, self.transform).unsqueeze_(0)                      # (input) spatial images
-        y = torch.from_numpy(np.array(self.labels[index])).type(torch.LongTensor)   # (labels) LongTensor are for int64 instead of FloatTensor
+        X = self.read_images(data_path, folder, self.transform).unsqueeze_(0)  # (input) spatial images
+        y = torch.LongTensor([self.labels[index]])                             # (labels) LongTensor are for int64 instead of FloatTensor
 
         # print(X.shape)
         return X, y
@@ -100,8 +100,8 @@ class Dataset_CRNN(data.Dataset):
         folder = self.folders[index]
 
         # Load data
-        X = self.read_images(data_path, folder, self.transform)                  # (input) spatial images
-        y = torch.from_numpy(np.array(self.labels[index])).type(torch.LongTensor)   # (labels) LongTensor are for int64 instead of FloatTensor
+        X = self.read_images(data_path, folder, self.transform)     # (input) spatial images
+        y = torch.LongTensor([self.labels[index]])                  # (labels) LongTensor are for int64 instead of FloatTensor
 
         # print(X.shape)
         return X, y

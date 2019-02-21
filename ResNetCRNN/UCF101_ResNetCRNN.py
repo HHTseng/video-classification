@@ -54,7 +54,7 @@ def train(log_interval, model, device, train_loader, optimizer, epoch):
     N_count = 0   # counting total trained sample in one epoch
     for batch_idx, (X, y) in enumerate(train_loader):
         # distribute data to device
-        X, y = X.to(device), y.to(device)
+        X, y = X.to(device), y.to(device).view(-1, )
 
         N_count += X.size(0)
 
@@ -92,7 +92,7 @@ def validation(model, device, optimizer, test_loader):
     with torch.no_grad():
         for X, y in test_loader:
             # distribute data to device
-            X, y = X.to(device), y.to(device)
+            X, y = X.to(device), y.to(device).view(-1, )
 
             output = rnn_decoder(cnn_encoder(X))
 

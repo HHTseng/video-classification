@@ -60,8 +60,8 @@ class Dataset_3DCNN(data.Dataset):
         folder = self.folders[index]
 
         # Load data
-        X = self.read_images(data_path, folder, self.transform).unsqueeze_(0)                      # (input) spatial images
-        y = torch.from_numpy(np.array(self.labels[index])).type(torch.LongTensor)   # (labels) LongTensor are for int64 instead of FloatTensor
+        X = self.read_images(data_path, folder, self.transform).unsqueeze_(0)  # (input) spatial images
+        y = torch.LongTensor([self.labels[index]])                             # (labels) LongTensor are for int64 instead of FloatTensor
 
         # print(X.shape)
         return X, y
@@ -100,8 +100,8 @@ class Dataset_CRNN(data.Dataset):
         folder = self.folders[index]
 
         # Load data
-        X = self.read_images(data_path, folder, self.transform)                  # (input) spatial images
-        y = torch.from_numpy(np.array(self.labels[index])).type(torch.LongTensor)   # (labels) LongTensor are for int64 instead of FloatTensor
+        X = self.read_images(data_path, folder, self.transform)     # (input) spatial images
+        y = torch.LongTensor([self.labels[index]])                  # (labels) LongTensor are for int64 instead of FloatTensor
 
         # print(X.shape)
         return X, y
@@ -232,7 +232,7 @@ class EncoderCNN(nn.Module):
         self.CNN_embed_dim = CNN_embed_dim
 
         # CNN architechtures
-        self.ch1, self.ch2, self.ch3, self.ch4 = 16, 32, 64, 128
+        self.ch1, self.ch2, self.ch3, self.ch4 = 32, 64, 128, 256
         self.k1, self.k2, self.k3, self.k4 = (5, 5), (3, 3), (3, 3), (3, 3)      # 2d kernal size
         self.s1, self.s2, self.s3, self.s4 = (2, 2), (2, 2), (2, 2), (2, 2)      # 2d strides
         self.pd1, self.pd2, self.pd3, self.pd4 = (0, 0), (0, 0), (0, 0), (0, 0)  # 2d padding
