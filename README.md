@@ -56,7 +56,7 @@ For tutorial purpose, I try to build code as simple as possible. Essentially, **
 
 ### 0. Prerequisites
 - [Python 3.6](https://www.python.org/)
-- [PyTorch 0.4.1](https://pytorch.org/)
+- [PyTorch 1.0.0](https://pytorch.org/)
 - [Numpy 1.15.0](http://www.numpy.org/)
 - [Sklearn 0.19.2](https://scikit-learn.org/stable/)
 - [Matplotlib](https://matplotlib.org/)
