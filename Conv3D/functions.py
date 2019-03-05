@@ -325,21 +325,21 @@ class ResCNNEncoder(nn.Module):
         
     def forward(self, x_3d):
         cnn_embed_seq = []
-        with torch.no_grad():
-            for t in range(x_3d.size(1)):
-                # CNNs
-                x = self.resnet(x_3d[:, t, :, :, :]) # ResNet
-                x = x.view(x.size(0), -1)            # flatten output of conv
+        for t in range(x_3d.size(1)):
+            # ResNet CNN
+            with torch.no_grad():
+                x = self.resnet(x_3d[:, t, :, :, :])  # ResNet
+                x = x.view(x.size(0), -1)             # flatten output of conv
 
-                # FC layers
-                x = self.bn1(self.fc1(x))
-                x = F.relu(x)
-                x = self.bn2(self.fc2(x))
-                x = F.relu(x)
-                x = F.dropout(x, p=self.drop_p, training=self.training)
-                x = self.fc3(x)
+            # FC layers
+            x = self.bn1(self.fc1(x))
+            x = F.relu(x)
+            x = self.bn2(self.fc2(x))
+            x = F.relu(x)
+            x = F.dropout(x, p=self.drop_p, training=self.training)
+            x = self.fc3(x)
 
-                cnn_embed_seq.append(x)
+            cnn_embed_seq.append(x)
 
         # swap time and sample dim such that (sample dim, time dim, CNN latent dim)
         cnn_embed_seq = torch.stack(cnn_embed_seq, dim=0).transpose_(0, 1)
