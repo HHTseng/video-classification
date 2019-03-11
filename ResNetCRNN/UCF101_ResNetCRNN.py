@@ -20,7 +20,6 @@ data_path = "./jpegs_256/"    # define UCF-101 RGB data path
 action_name_path = './UCF101actions.pkl'
 save_model_path = "./ResNetCRNN_ckpt/"
 
-
 # EncoderCNN architecture
 CNN_fc_hidden1, CNN_fc_hidden2 = 1024, 768
 CNN_embed_dim = 512   # latent dim extracted by 2D CNN
@@ -161,7 +160,7 @@ for f in fnames:
     loc2 = f.find('_g')
     actions.append(f[(loc1 + 2): loc2])
 
-    all_names.append(os.path.join(data_path, f))
+    all_names.append(f)
 
 
 # list all data files
@@ -177,8 +176,8 @@ transform = transforms.Compose([transforms.Resize([res_size, res_size]),
 
 selected_frames = np.arange(begin_frame, end_frame, skip_frame).tolist()
 
-train_set, valid_set = Dataset_CRNN(train_list, train_label, selected_frames, transform=transform), \
-                       Dataset_CRNN(test_list, test_label, selected_frames, transform=transform)
+train_set, valid_set = Dataset_CRNN(data_path, train_list, train_label, selected_frames, transform=transform), \
+                       Dataset_CRNN(data_path, test_list, test_label, selected_frames, transform=transform)
 
 train_loader = data.DataLoader(train_set, **params)
 valid_loader = data.DataLoader(valid_set, **params)

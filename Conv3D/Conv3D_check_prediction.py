@@ -11,9 +11,9 @@ import pandas as pd
 import pickle
 
 # set path
+data_path = "./jpegs_256/"    # define UCF-101 RGB data path
 action_name_path = './UCF101actions.pkl'
 save_model_path = "./Conv3D_ckpt/"
-
 
 # 3D CNN parameters
 fc_hidden1, fc_hidden2 = 256, 256
@@ -26,7 +26,6 @@ img_x, img_y = 256, 342  # resize video 2d frame size
 
 # Select which frame to begin & end in videos
 begin_frame, end_frame, skip_frame = 1, 29, 1
-
 
 
 with open(action_name_path, 'rb') as f:
@@ -58,7 +57,7 @@ for f in fnames:
     loc2 = f.find('_g')
     actions.append(f[(loc1 + 2): loc2])
 
-    all_names.append(os.path.join(data_path, f))
+    all_names.append(f)
 
 
 # list all data files
@@ -79,7 +78,7 @@ selected_frames = np.arange(begin_frame, end_frame, skip_frame).tolist()
 
 # reset data loader
 all_data_params = {'batch_size': batch_size, 'shuffle': False, 'num_workers': 4, 'pin_memory': True} if use_cuda else {}
-all_data_loader = data.DataLoader(Dataset_3DCNN(all_X_list, all_y_list, selected_frames, transform=transform), **all_data_params)
+all_data_loader = data.DataLoader(Dataset_3DCNN(data_path, all_X_list, all_y_list, selected_frames, transform=transform), **all_data_params)
 
 
 # reload CRNN model

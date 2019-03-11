@@ -9,9 +9,6 @@ import torchvision.models as models
 import torchvision.transforms as transforms
 from tqdm import tqdm
 
-data_path = "./jpegs_256/"
-
-
 ## ------------------- label conversion tools ------------------ ##
 def labels2cat(label_encoder, list):
     return label_encoder.transform(list)
@@ -30,8 +27,9 @@ def cat2labels(label_encoder, y_cat):
 # for 3DCNN
 class Dataset_3DCNN(data.Dataset):
     "Characterizes a dataset for PyTorch"
-    def __init__(self, folders, labels, frames, transform=None):
+    def __init__(self, data_path, folders, labels, frames, transform=None):
         "Initialization"
+        self.data_path = data_path
         self.labels = labels
         self.folders = folders
         self.transform = transform
@@ -41,10 +39,10 @@ class Dataset_3DCNN(data.Dataset):
         "Denotes the total number of samples"
         return len(self.folders)
 
-    def read_images(self, data_path, selected_folder, use_transform):
+    def read_images(self, path, selected_folder, use_transform):
         X = []
         for i in self.frames:
-            image = Image.open(os.path.join(data_path, selected_folder, 'frame{:06d}.jpg'.format(i))).convert('L')
+            image = Image.open(os.path.join(path, selected_folder, 'frame{:06d}.jpg'.format(i))).convert('L')
 
             if use_transform is not None:
                 image = use_transform(image)
@@ -60,7 +58,7 @@ class Dataset_3DCNN(data.Dataset):
         folder = self.folders[index]
 
         # Load data
-        X = self.read_images(data_path, folder, self.transform).unsqueeze_(0)  # (input) spatial images
+        X = self.read_images(self.data_path, folder, self.transform).unsqueeze_(0)  # (input) spatial images
         y = torch.LongTensor([self.labels[index]])                             # (labels) LongTensor are for int64 instead of FloatTensor
 
         # print(X.shape)
@@ -70,8 +68,9 @@ class Dataset_3DCNN(data.Dataset):
 # for CRNN
 class Dataset_CRNN(data.Dataset):
     "Characterizes a dataset for PyTorch"
-    def __init__(self, folders, labels, frames, transform=None):
+    def __init__(self, data_path, folders, labels, frames, transform=None):
         "Initialization"
+        self.data_path = data_path
         self.labels = labels
         self.folders = folders
         self.transform = transform
@@ -81,10 +80,10 @@ class Dataset_CRNN(data.Dataset):
         "Denotes the total number of samples"
         return len(self.folders)
 
-    def read_images(self, data_path, selected_folder, use_transform):
+    def read_images(self, path, selected_folder, use_transform):
         X = []
         for i in self.frames:
-            image = Image.open(os.path.join(data_path, selected_folder, 'frame{:06d}.jpg'.format(i)))
+            image = Image.open(os.path.join(path, selected_folder, 'frame{:06d}.jpg'.format(i)))
 
             if use_transform is not None:
                 image = use_transform(image)
@@ -100,7 +99,7 @@ class Dataset_CRNN(data.Dataset):
         folder = self.folders[index]
 
         # Load data
-        X = self.read_images(data_path, folder, self.transform)     # (input) spatial images
+        X = self.read_images(self.data_path, folder, self.transform)     # (input) spatial images
         y = torch.LongTensor([self.labels[index]])                  # (labels) LongTensor are for int64 instead of FloatTensor
 
         # print(X.shape)

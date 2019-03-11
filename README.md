@@ -81,16 +81,10 @@ Put the 3 parts in same folder to unzip. The folder has default name: **jpegs_25
 
 In `UCF101_CRNN.py`, for example set 
 ```
-data_path = "./UCF101/jpegs_256/"
+data_path = "./UCF101/jpegs_256/"         # UCF101 video path
 action_name_path = "./UCF101actions.pkl"
 save_model_path = "./model_ckpt/"
 ```
-
-In `functions.py`, for example set
-```
-data_path = "./UCF101/jpegs_256/"
-```
-
 
 ### 3. Train & test model
 

@@ -20,7 +20,6 @@ data_path = "./jpegs_256/"    # define UCF-101 spatial data path
 action_name_path = "./UCF101actions.pkl"  # load preprocessed action names
 save_model_path = "./Conv3D_ckpt/"  # save Pytorch models
 
-
 # 3D CNN parameters
 fc_hidden1, fc_hidden2 = 256, 256
 dropout = 0.0        # dropout probability
@@ -45,14 +44,14 @@ def train(log_interval, model, device, train_loader, optimizer, epoch):
     N_count = 0   # counting total trained sample in one epoch
     for batch_idx, (X, y) in enumerate(train_loader):
         # distribute data to device
-        X, y = X.to(device), y.to(device)
+        X, y = X.to(device), y.to(device).view(-1, )
 
         N_count += X.size(0)
 
         optimizer.zero_grad()
         output = model(X)  # output size = (batch, number of classes)
 
-        loss = F.cross_entropy(output, y, reduction='elementwise_mean')
+        loss = F.cross_entropy(output, y)
         losses.append(loss.item())
 
         # to compute accuracy
@@ -81,7 +80,7 @@ def validation(model, device, optimizer, test_loader):
     with torch.no_grad():
         for X, y in test_loader:
             # distribute data to device
-            X, y = X.to(device), y.to(device)
+            X, y = X.to(device), y.to(device).view(-1, )
 
             output = model(X)
 
@@ -148,7 +147,7 @@ for f in fnames:
     loc2 = f.find('_g')
     actions.append(f[(loc1 + 2): loc2])
 
-    all_names.append(os.path.join(data_path, f))
+    all_names.append(f)
 
 
 # list all data files
@@ -165,8 +164,8 @@ transform = transforms.Compose([transforms.Resize([img_x, img_y]),
 
 selected_frames = np.arange(begin_frame, end_frame, skip_frame).tolist()
 
-train_set, valid_set = Dataset_3DCNN(train_list, train_label, selected_frames, transform=transform), \
-                       Dataset_3DCNN(test_list, test_label, selected_frames, transform=transform)
+train_set, valid_set = Dataset_3DCNN(data_path, train_list, train_label, selected_frames, transform=transform), \
+                       Dataset_3DCNN(data_path, test_list, test_label, selected_frames, transform=transform)
 train_loader = data.DataLoader(train_set, **params)
 valid_loader = data.DataLoader(valid_set, **params)
 
