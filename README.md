@@ -116,12 +116,14 @@ To check model prediction:
 
 - A field test using 2 GPUs (nVidia TITAN V, 12Gb mem) with my default model parameters and batch size `30~60`.
 
+- Some **pretrained models** can be found [here](https://drive.google.com/open?id=117mRMS2r09fz4ozkdzN4cExO1sFwcMvs), thanks to the suggestion of MinLiAmoy[https://github.com/MinLiAmoy?tab=repositories].
+
 
  network                | best epoch | testing accuracy |
 ------------            |:-----:| :-----:|
 3D CNN                  |   4  |  50.84 % | 
 2D CNN + LSTM           |  25  |  54.62 % | 
-2D ResNet152-CNN + LSTM |  41  |**85.05 %** |      
+2D ResNet152-CNN + LSTM |  53  |**85.68 %** |      
 
 <img src="./fig/loss_3DCNN.png" width="650">
 <img src="./fig/loss_CRNN.png" width="650">
