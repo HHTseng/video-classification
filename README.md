@@ -116,7 +116,7 @@ To check model prediction:
 
 - A field test using 2 GPUs (nVidia TITAN V, 12Gb mem) with my default model parameters and batch size `30~60`.
 
-- Some **pretrained models** can be found [here](https://drive.google.com/open?id=117mRMS2r09fz4ozkdzN4cExO1sFwcMvs), thanks to the suggestion of MinLiAmoy[https://github.com/MinLiAmoy?tab=repositories].
+- Some **pretrained models** can be found [here](https://drive.google.com/open?id=117mRMS2r09fz4ozkdzN4cExO1sFwcMvs), thanks to the suggestion of [MinLiAmoy](https://github.com/MinLiAmoy?tab=repositories).
 
 
  network                | best epoch | testing accuracy |
