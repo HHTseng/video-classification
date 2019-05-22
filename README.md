@@ -8,7 +8,7 @@ The repository builds a **quick and simple** code for video classification (or a
 ![alt text](./fig/kayaking.gif)
 
 
-[UCF101](http://crcv.ucf.edu/data/UCF101.php) has total 13,320 videos from 101 actions. Videos have various time lengths (frames) and different 2d image size; the shortest is 28 frames. 
+[UCF101](http://crcv.ucf.edu/data/UCF101.php) has total 13,320 videos from 101 actions. Videos have various time lengths (frames) and different 2d image size; the shortest is 29 frames. 
 
 To avoid painful video preprocessing like frame extraction and conversion such as [OpenCV](https://opencv.org/) or [FFmpeg](https://www.ffmpeg.org/), here I used a preprocessed dataset from [feichtenhofer](https://github.com/feichtenhofer/twostreamfusion) directly. If you want to convert or extract video frames from scratch, here are some nice tutorials: 
   - https://pythonprogramming.net/loading-video-python-opencv-tutorial/
@@ -38,10 +38,10 @@ The CRNN model is a pair of CNN encoder and RNN decoder (see figure below):
 
 ## Training & testing
 - For 3D CNN:
-   1. The videos are resized as **(t-dim, channels, x-dim, y-dim) = (28, 3, 256, 342)** since CNN requires a fixed-size input. The minimal frame number 28 is the consensus of all videos in UCF101.
+   1. The videos are resized as **(t-dim, channels, x-dim, y-dim) = (29, 3, 256, 342)** since CNN requires a fixed-size input. The minimal frame number 29 is the consensus of all videos in UCF101.
    2. *Batch normalization*, *dropout* are used.
    
-- For CRNN, the videos are resized as **(t-dim, channels, x-dim, y-dim) = (28, 3, 224, 224)** since the ResNet-152 only receives RGB inputs of size (224, 224).
+- For CRNN, the videos are resized as **(t-dim, channels, x-dim, y-dim) = (29, 3, 224, 224)** since the ResNet-152 only receives RGB inputs of size (224, 224).
 
 - Training videos = **9,990** vs. testing videos = **3,330**
 
