@@ -72,7 +72,7 @@ params = {'batch_size': batch_size, 'shuffle': True, 'num_workers': 4, 'pin_memo
 # image transformation
 transform = transforms.Compose([transforms.Resize([img_x, img_y]),
                                 transforms.ToTensor(),
-                                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
+                                transforms.Normalize(mean=[0.5], std=[0.5])])
 
 selected_frames = np.arange(begin_frame, end_frame, skip_frame).tolist()
 
