@@ -109,6 +109,12 @@ To check model prediction:
 <img src="./fig/wrong_pred.png" width="600">
 
 
+## Version Warrning
+```
+As of today (May 31, 2019), it is found that in Pytorch 1.1.0 **flatten_parameters()** doesn't work under [torch.no_grad and DataParallel](https://github.com/pytorch/pytorch/issues/21108) (for multiple GPUs). Early versions before Pytorch 1.0.1 still run OK. See (Issues)[https://github.com/HHTseng/video-classification/issues]
+```
+Thanks to [raghavgarg97](https://github.com/raghavgarg97)'s report.
+
 
 ## Device & performance 
 
