@@ -150,7 +150,10 @@ use_cuda = torch.cuda.is_available()                   # check if GPU exists
 device = torch.device("cuda" if use_cuda else "cpu")   # use CPU or GPU
 
 # Data loading parameters
-params = {'batch_size': batch_size, 'shuffle': True, 'num_workers': 8, 'pin_memory': True} if use_cuda else {}
+if use_cuda:
+    params = {'batch_size': batch_size, 'shuffle': True, 'num_workers': 8, 'pin_memory': True}
+else:
+    params = {'batch_size': 2, 'shuffle': True} # Testing
 
 
 # load UCF101 actions names
@@ -184,6 +187,8 @@ fnames = os.listdir(data_path)
 all_names = []
 all_length = []    # each video length
 for f in fnames:
+    if not os.path.isdir(os.path.join(data_path, f)):
+        continue
     loc1 = f.find('v_')
     loc2 = f.find('_g')
     actions.append(f[(loc1 + 2): loc2])
@@ -226,7 +231,7 @@ if torch.cuda.device_count() > 1:
                   list(cnn_encoder.module.fc2.parameters()) + list(cnn_encoder.module.bn2.parameters()) + \
                   list(cnn_encoder.module.fc3.parameters()) + list(rnn_decoder.parameters())
 
-elif torch.cuda.device_count() == 1:
+else:
     crnn_params = list(cnn_encoder.fc1.parameters()) + list(cnn_encoder.bn1.parameters()) + \
                   list(cnn_encoder.fc2.parameters()) + list(cnn_encoder.bn2.parameters()) + \
                   list(cnn_encoder.fc3.parameters()) + list(rnn_decoder.parameters())

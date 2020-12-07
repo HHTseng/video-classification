@@ -264,16 +264,20 @@ class DecoderRNN_varlen(nn.Module):
         """ h_n shape (n_layers, batch, hidden_size), h_c shape (n_layers, batch, hidden_size) """ 
         """ None represents zero initial hidden state. RNN_out has shape=(batch, time_step, output_size) """
 
-        RNN_out, _ = torch.nn.utils.rnn.pad_packed_sequence(packed_RNN_out, batch_first=True)
+        RNN_out, out_lengths = torch.nn.utils.rnn.pad_packed_sequence(packed_RNN_out, batch_first=True)
         RNN_out = RNN_out.contiguous()
+        last_out = []
+        for i, length in enumerate(out_lengths):
+            last_out.append(RNN_out[i][length - 1])
+        last_out = torch.stack(last_out)
         # RNN_out = RNN_out.view(-1, RNN_out.size(2))
         
         # reverse back to original sequence order
         _, unperm_idx = perm_idx.sort(0)
-        RNN_out = RNN_out[unperm_idx]
+        RNN_out = last_out[unperm_idx]
 
         # FC layers
-        x = self.fc1(RNN_out[:, -1, :])   # choose RNN_out at the last time step
+        x = self.fc1(RNN_out)   # choose RNN_out at the last time step
         x = F.relu(x)
         x = F.dropout(x, p=self.drop_p, training=self.training)
         x = self.fc2(x)
